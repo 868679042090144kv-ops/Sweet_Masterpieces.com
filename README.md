@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кондитерська майстерня / Cukiernia</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fff9f6;
+            color: #4a3b32;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: linear-gradient(135deg, #ffb7b2, #ffdac1);
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #6d4c41;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            color: #5d4037;
+            font-style: italic;
+        }
+        .lang-notice {
+            background-color: #ffe5d9;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 1px solid #fbc4b6;
+            color: #7d5246;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .menu-section-title {
+            text-align: center;
+            font-size: 24px;
+            color: #b56576;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        /* НОВИЙ НАДІЙНИЙ ФЛЕКС-КОНТЕЙНЕР */
+        .menu-item {
+            background: #ffffff;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 18px rgba(229, 107, 111, 0.1);
+            border: 1px solid #ffe5d9;
+            overflow: hidden;
+            display: flex; /* Робить блоки гнучкими в один рядок */
+            align-items: stretch;
+        }
+        
+        /* Блок для картинки зліва */
+        .item-image-cell {
+            flex: 0 0 45%; /* Фіксована ширина 45% */
+            max-width: 45%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        
+        /* Обмежуємо розміри самої картинки */
+        .item-image-cell img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Зберігає пропорції без деформації */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* Блок з описом справа */
+        .item-details-cell {
+            flex: 1; /* Займає весь залишок простору справа */
+            padding: 25px;
+        }
+        
+        .price-badge {
+            background: linear-gradient(135deg, #ffb7b2, #e56b6f);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 8px rgba(229,107,111,0.3);
+        }
+        .price-badge .pln {
+            background-color: rgba(255,255,255,0.25);
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+        .item-title {
+            font-size: 22px;
+            color: #6d4c41;
+            margin: 0 0 10px 0;
+            font-weight: bold;
+        }
+        .lang-block {
+            margin-bottom: 15px;
+        }
+        .lang-block.pl {
+            border-top: 1px dashed #ffd166;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .lang-label {
+            display: inline-block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .lang-label.uk-lbl { background-color: #e8f0fe; color: #1a73e8; }
+        .lang-label.pl-lbl { background-color: #fce8e6; color: #d93025; }
+        
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #5c4d43;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+            color: #b56576;
+            background-color: #ffe5d9;
+            margin-top: 50px;
+        }
+        
+        /* Адаптивність для мобільних пристроїв */
+        @media (max-width: 768px) {
+            .menu-item {
+                flex-direction: column; /* На телефонах картинка буде згори, а текст знизу */
+            }
+            .item-image-cell {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>✨ Солодкі Шедеври / Słodkie Arcydzieła ✨</h1>
+        <p>Найніжніші десерти для вашого свята • Najdelikatniejsze desery na Twoje święto</p>
+        <p>instagram:sweetmasterpieces2026</p>
+        <p>Wrocław</p>
+    </div>
+
+    <div class="lang-notice">
+        🌐 <strong>UA/PL:</strong> Сайт підтримує дві мови одночасно для вашої зручності! / Strona obsługuje dwa języki jednocześnie dla Twojej wygody!
+    </div>
+
+    <div class="container">
+
+        <div class="menu-section-title">Меренгові рулети / Rolady Bezowe</div>
+        
+        <div class="menu-item">
+            <div class="item-image-cell">
+                <img src="полуничний.jpg" alt="Меренговий рулет">
+            </div>
+            <div class="item-details-cell">
+                <div class="price-badge">
+                    850 грн/кг <span class="pln">~ 850 PLN/kg</span>
+                </div>
+                
+                <div class="lang-block uk">
+                    <span class="lang-label uk-lbl">Українська</span>
+                    <h3 class="item-title">Меренговий рулет</h3>
+                    <ul>
+                        <li>Ніжні меренгові коржі</li>
+                        <li>полуничний крем</li>
+                        <li>полуничне конфі</li>
+                    </ul>
+                </div>
+
+                <div class="lang-block pl">
+                    <span class="lang-label pl-lbl">Polski</span>
+                    <h3 class="item-title">Rolada Bezowa</h3>
+                    <ul>
+                        <li>Delikatne blaty bezowe</li>
+                        <li>krem truskawkowy</li>
+                        <li>ko truskawkowanfitura</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section-title">Торти / Torty</div>
+
+        <div class="menu-item">
+            <div class="item-image-cell">
+                <img src="шоколад вишня new.jpg" alt="Шоколад-Вишня NEW">
+            </div>
+            <div class="item-details-cell">
+                <div class="price-badge">
+                    1200 грн/кг <span class="pln">~ 1200 PLN/kg</span>
+                </div>
+                
+                <div class="lang-block uk">
+                    <span class="lang-label uk-lbl">Українська</span>
+                    <h3 class="item-title">Шоколад-Вишня NEW</h3>
+                    <ul>
+                        <li>Крем-чіз</li>
+                        <li>Шоколадний мус</li>
+                        <li>Ганаш на молочному шоколаді</li>
+                        <li>Вишнева начинка</li>
+                        <li>Вишневий мус</li>
+                        <li>Шоколадний бісквіт</li>
+                        <li>Ганаш на білому шоколаді</li>
+                    </ul>
+                </div>
+
+                <div class="lang-block pl">
+                    <span class="lang-label pl-lbl">Polski</span>
+                    <h3 class="item-title">Czekolada-Wiśnia NEW</h3>
+                    <ul>
+                        <li>Krem z serek (Cream-cheese)</li>
+                        <li>Mus czekoladowy</li>
+                        <li>Ganache z mlecznej czekolady</li>
+                        <li>Nadzienie wiśniowe</li>
+                        <li>Mus wiśniowy</li>
+                        <li>Biszkopt czekoladowy</li>
+                        <li>Ganache z białej czekolady</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-image-cell">
+                <img src="snikers.jpg" alt="SNIKERS">
+            </div>
+            <div class="item-details-cell">
+                <div class="price-badge">
+                    1200 грн/кг <span class="pln">~ 1200 PLN/kg</span>
+                </div>
+                
+                <div class="lang-block uk">
+                    <span class="lang-label uk-lbl">Українська</span>
+                    <h3 class="item-title">SNIKERS</h3>
+                    <ul>
+                        <li>Ганаш на білому шоколаді</li>
+                        <li>Збитий ганаш на молочному шоколаді</li>
+                        <li>Солена карамель</li>
+                        <li>Шоколадний заварний бісквіт</li>
+                    </ul>
+                </div>
+
+                <div class="lang-block pl">
+                    <span class="lang-label pl-lbl">Polski</span>
+                    <h3 class="item-title">SNIKERS</h3>
+                    <ul>
+                        <li>Ganache z białej czekolady</li>
+                        <li>Bity ganache z mlecznej czekolady</li>
+                        <li>Słony karmel</li>
+                        <li>Czekoladowy biszkopt parzony</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-image-cell">
+                <img src="Ягідний.jpg" alt="Ягідний">
+            </div>
+            <div class="item-details-cell">
+                <div class="price-badge">
+                    1100 грн/кг <span class="pln">~ 1100 PLN/kg</span>
+                </div>
+                
+                <div class="lang-block uk">
+                    <span class="lang-label uk-lbl">Українська</span>
+                    <h3 class="item-title">Ягідний</h3>
+                    <ul>
+                        <li>Крем-чіз на маслі</li>
+                        <li>Ванільний крем-чіз</li>
+                        <li>Бісквіт ванільно-ягідний</li>
+                        <li>Ягідний гель</li>
+                        <li>Ягідний ганаш</li>
+                    </ul>
+                </div>
+
+                <div class="lang-block pl">
+                    <span class="lang-label pl-lbl">Polski</span>
+                    <h3 class="item-title">Jagodowy</h3>
+                    <ul>
+                        <li>Krem maślany z serkiem</li>
+                        <li>Waniliowy cream-cheese</li>
+                        <li>Biszkopt waniliowo-jagodowy</li>
+                        <li>Żel jagodowy</li>
+                        <li>Ganache jagodowy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-image-cell">
+                <img src="екзотика і манго-полуниця.jpg" alt="Екзотика і Манго-Полуниця">
+            </div>
+            <div class="item-details-cell">
+                <div class="price-badge">
+                    1200 грн/кг <span class="pln">~ 1200 PLN/kg</span>
+                </div>
+                
+                <div class="lang-block uk">
+                    <span class="lang-label uk-lbl">Українська</span>
+                    <h3 class="item-title">Екзотика / Манго-Полуниця</h3>
+                    <p style="font-size: 14px; margin-bottom: 5px;"><strong>Екзотика:</strong> Екзотичне компоте, Манговий бісквіт, Мус манго-маракуя.</p>
+                    <p style="font-size: 14px; margin-top: 5px;"><strong>Манго-Полуниця:</strong> Ягідний крем-чіз, Мус манго, Бісквіт, Гель манго, Гель полуничний, Ганаш на білому шоколаді.</p>
+                </div>
+
+                <div class="lang-block pl">
+                    <span class="lang-label pl-lbl">Polski</span>
+                    <h3 class="item-title">Egzotyka / Mango-Truskawka</h3>
+                    <p style="font-size: 14px; margin-bottom: 5px;"><strong>Egzotyka:</strong> Egzotyczny kompot, Biszkopt mangowy, Mus mango-marakuja.</p>
+                    <p style="font-size: 14px; margin-top: 5px;"><strong>Mango-Truskawka:</strong> Jagodowy cream-cheese, Mus mango, Biszkopt, Żel mango, Żel truskawkowy, Ganache z białej czekolady.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section-title">Коробка "Завитки" / Pudełko "Zawijasy"</div>
+
+        <div class="menu-item">
+            <div class="item-image-cell">
+                <img src="завитки.jpg" alt="Коробка Завитки">
+            </div>
+            <div class="item-details-cell">
+                
+                <div class="lang-block uk">
+                    <span class="lang-label uk-lbl">Українська</span>
+                    <h3 class="item-title">Коробка "Завитки"</h3>
+                    <ul>
+                        <li><strong>9 штук:</strong> 300 грн <span ></span></li>
+                        <li><strong>12 штук:</strong> 450 грн <span ></span></li>
+                        <li><strong>16 штук:</strong> 600 грн <span ></span></li>
+                        <li>різні самки зефірок</li>
+                    </ul>
+                </div>
+
+                <div class="lang-block pl">
+                    <span class="lang-label pl-lbl">Polski</span>
+                    <h3 class="item-title">Pudełko "Zawijasy"</h3>
+                    <ul>
+                        <li><strong>9 sztuk:</strong> 300  PLN <span ></span></li>
+                        <li><strong>12 sztuk:</strong> 450 PLN <span ></span></li>
+                        <li><strong>16 sztuk:</strong> 600 PLN <span ></span></li>
+                        <li>różne samice zephyrów</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        💖 Смачного! / Smacznego! 💖
+    </div>
+
+</body>
+</html>
